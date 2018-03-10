@@ -1,7 +1,6 @@
-class CreateChannels < ActiveRecord::Migration[5.0]
+class CreateTeamUsers < ActiveRecord::Migration[5.0]
   def change
-    create_table :channels do |t|
-      t.string :slug
+    create_table :team_users do |t|
       t.references :user, foreign_key: true
       t.references :team, foreign_key: true
 
