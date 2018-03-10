@@ -23,7 +23,7 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - '.:/onebitchat'
+      - '.:/chat_slack'
     volumes_from:
     - box
 
