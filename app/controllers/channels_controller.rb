@@ -24,7 +24,7 @@ class ChannelsController < ApplicationController
 
     respond_to do |format|
       #return header empty
-      format.json { head :no_content }
+      format.json { render json: true }
     end
   end
 

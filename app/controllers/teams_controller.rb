@@ -31,7 +31,7 @@ class TeamsController < ApplicationController
     @team.destroy
 
     respond_to do |format|
-      format.json { head :no_content }
+      format.json { render json: true }
       #format.html { redirect_to main_app.root_url, notice: 'Team deleted' }
     end
   end

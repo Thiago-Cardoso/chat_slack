@@ -10,7 +10,7 @@ class TeamUsersController < ApplicationController
 
     respond_to do |format|
       if @team_user.save
-        format.json { head :ok }
+        format.json { render :show, status: :created }
       else
         format.json { render json: @team_user.errors, status: :unprocessable_entity }
       end
@@ -23,7 +23,7 @@ class TeamUsersController < ApplicationController
     @team_user.destroy
 
     respond_to do |format|
-      format.json { head :no_content }
+      format.json { render json: true }
     end
   end
 
@@ -31,11 +31,12 @@ class TeamUsersController < ApplicationController
 
    #set team for id user and id team
   def set_team_user
-    @team_user = TeamUser.find_by(params[:user_id], params[:team_id])
+    @team_user = TeamUser.find_by(user_id: params[:id], team_id: params[:team_id])
   end
 
   #params permit
   def team_user_params
-    params.require(:team_user).permit(:team_id, :user_id)
+    user = User.find_by(email: params[:team_user][:email])
+    params.require(:team_user).permit(:team_id).merge(user_id: user.id)
   end
 end
